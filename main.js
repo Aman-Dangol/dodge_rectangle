@@ -1,33 +1,41 @@
 // // inititalizing varaiables and classes
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-let container = document.querySelector(".container")
-let over = document.querySelector(".gameOver")
-let time = 5000;
+let over = document.querySelector(".gameOver");
+let time = 1000;
 let arr = new Array();
 let mouseX, mouseY;
 let gameOver = false;
+let createID;
 function update() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
 
   for (let i = 0; i < arr.length; i++) {
     if (gameOver) {
-        over.style.display = "block";
-        container.style.display = "none";
+      over.style.zIndex = 1;
     } else {
       if (arr[i].x >= canvas.width) {
         arr.splice(i, 1);
       } else {
         arr[i].move();
-        arr[i].draw();
+        // arr[i].draw();
         gameOver = arr[i].collision(mouseX, mouseY);
       }
     }
+    arr[i].draw();
   }
   window.requestAnimationFrame(update);
 }
 
-// setInterval(createRect, 5000);
+createID = setInterval(createRect, time);
+
+setInterval(()=>{
+  clearInterval(createID);
+  time -=100;
+  console.log(time);
+  createID = setInterval(createRect, time);
+
+},5000)
 function createRect() {
   arr.push(
     new VRect(Math.random() * canvas.width, -100, 10, 100, randomColor())
@@ -59,7 +67,6 @@ function remove(i) {}
 
 function checkPosition() {}
 // calling  functions
-
 createRect();
 // setInterval(createRect, time);
 update();
