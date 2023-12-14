@@ -10,6 +10,11 @@
   height: 100vh;
 }
 
+.gameover{
+  display: none;
+  background-color: white;
+}
+
 canvas {
   display: block;
   width: 100%;

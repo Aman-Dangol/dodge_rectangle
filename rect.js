@@ -1,4 +1,4 @@
-class VRect {
+class Rect {
   constructor(x, y, width, height, color) {
     this.x = x;
     this.y = y;
@@ -7,23 +7,25 @@ class VRect {
     this.color = color;
     this.speed = 1;
   }
-  move() {
+  draw() {
     ctx.fillStyle = this.color;
-    ctx.fillRect(this.x, (this.y += this.speed), this.width, this.height);
+    ctx.fillRect(this.x, this.y, this.width, this.height);
+  }
+  collision(mouseX, mouseY) {
+    if (mouseX >= this.x && mouseX <= this.x + this.width && mouseY >= this.y && mouseY <= this.y + this.height  ) {
+      return true;
+    }
+    return false;
   }
 }
 
-class HRect {
-  constructor(x, y, width, height, color) {
-    this.x = x;
-    this.y = y;
-    this.width = width;
-    this.height = height;
-    this.color = color;
-    this.speed = 1;
-  }
+class VRect extends Rect {
   move() {
-    ctx.fillStyle = this.color;
-    ctx.fillRect((this.x += this.speed), this.y, this.width, this.height);
+    this.y += this.speed;
+  }
+}
+class HRect extends Rect {
+  move() {
+    this.x += this.speed;
   }
 }
