@@ -1,6 +1,6 @@
 let canvas = document.getElementById("canvas");
 let ctx = canvas.getContext("2d");
-let time = 5000;
+let time = 1000;
 console.log(canvas.width, canvas.height);
 let arr = new Array();
 function update() {
@@ -17,13 +17,12 @@ update();
 function createRect() {
   console.log("new rect");
   console.log(Math.random()*canvas.height);
-  arr.push(new VRect(Math.random() *canvas.width, 0, 10, 100,randomColor()));
-  arr.push(new HRect(0, Math.random() *canvas.height, 100, 10, randomColor()));
+  arr.push(new VRect(Math.random() *canvas.width, -100, 10, 100,randomColor()));
+  arr.push(new HRect(-100, Math.random() *canvas.height, 100, 10, randomColor()));
 }
 
 function randomColor(){
-let num = Math.floor(Math.random()*2);
-console.log("num="+num);
+let num = Math.floor(Math.random()*3);
 if (num == 0) {
     return "red"
 }
