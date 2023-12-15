@@ -8,8 +8,10 @@ class Rect {
     this.speed = s;
   }
   draw() {
+    ctx.strokeStyle = "white";
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
+    ctx.strokeRect(this.x, this.y, this.width, this.height);
   }
   collision(mouseX, mouseY) {
     if (mouseX >= this.x && mouseX <= this.x + this.width && mouseY >= this.y && mouseY <= this.y + this.height  ) {

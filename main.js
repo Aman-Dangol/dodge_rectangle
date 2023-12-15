@@ -48,7 +48,7 @@ createID = setInterval(createRect, time);
 timeDecreaseID = setInterval(() => {
   clearInterval(createID);
   time -= 100;
-  speed++;
+  speed+=0.3;
   createID = setInterval(createRect, time);
 }, 5000);
 
