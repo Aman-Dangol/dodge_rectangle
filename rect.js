@@ -19,12 +19,15 @@ class Rect {
   }
 }
 
+// class used for vertical rectangles(|)
 class VRect extends Rect {
   move() {
+    // since its going to move only vertically , hence , increasing only vertical axis
     this.y += this.speed;
   }
 }
 class HRect extends Rect {
+  // since its going to move only horizaonal axis , hence increasing horizontal axis
   move() {
     this.x += this.speed;
   }
