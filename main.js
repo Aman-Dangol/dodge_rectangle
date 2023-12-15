@@ -13,6 +13,7 @@ let mouseX, mouseY;
 let gameOver = false;
 // id for interval
 let createID, timeDecreaseID;
+let speed = 1;
 function update() {
   // clearing the screen before  each update
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -30,9 +31,7 @@ function update() {
         arr.splice(i, 1);
       } else {
         // if the object is still in screen move untill the object reaches the canvas height or width
-        arr[i].move();
-        console.log(arr.length);
-
+        arr[i].move(speed);
         // check if the mouse position intersects with a rectanglr and if it does , then return true
         gameOver = arr[i].collision(mouseX, mouseY);
       }
@@ -49,16 +48,17 @@ createID = setInterval(createRect, time);
 timeDecreaseID = setInterval(() => {
   clearInterval(createID);
   time -= 100;
+  speed++;
   createID = setInterval(createRect, time);
 }, 5000);
 
 // this function creates and pushes two rectangles to the array var
 function createRect() {
   arr.push(
-    new VRect(Math.random() * canvas.width, -100, 10, 100, randomColor())
+    new VRect(Math.random() * canvas.width, -100, 10, 100, randomColor(),speed)
   );
   arr.push(
-    new HRect(-100, Math.random() * canvas.height, 100, 10, randomColor())
+    new HRect(-100, Math.random() * canvas.height, 100, 10, randomColor(),speed)
   );
 }
 

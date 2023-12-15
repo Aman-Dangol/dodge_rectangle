@@ -1,11 +1,11 @@
 class Rect {
-  constructor(x, y, width, height, color) {
+  constructor(x, y, width, height, color,s) {
     this.x = x;
     this.y = y;
     this.width = width;
     this.height = height;
     this.color = color;
-    this.speed = 1;
+    this.speed = s;
   }
   draw() {
     ctx.fillStyle = this.color;
