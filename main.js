@@ -18,7 +18,6 @@ function update() {
         arr.splice(i, 1);
       } else {
         arr[i].move();
-        // arr[i].draw();
         gameOver = arr[i].collision(mouseX, mouseY);
       }
     }
@@ -32,7 +31,6 @@ createID = setInterval(createRect, time);
 setInterval(()=>{
   clearInterval(createID);
   time -=100;
-  console.log(time);
   createID = setInterval(createRect, time);
 
 },5000)
@@ -63,10 +61,7 @@ function randomColor() {
   return "green";
 }
 
-function remove(i) {}
 
-function checkPosition() {}
 // calling  functions
 createRect();
-// setInterval(createRect, time);
 update();
