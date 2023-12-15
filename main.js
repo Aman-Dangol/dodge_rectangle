@@ -14,6 +14,7 @@ let gameOver = false;
 // id for interval
 let createID, timeDecreaseID;
 let speed = 1;
+
 function update() {
   // clearing the screen before  each update
   ctx.clearRect(0, 0, canvas.width, canvas.height);
@@ -48,31 +49,38 @@ createID = setInterval(createRect, time);
 timeDecreaseID = setInterval(() => {
   clearInterval(createID);
   time -= 100;
-  speed+=0.3;
+  speed += 0.3;
   createID = setInterval(createRect, time);
 }, 5000);
 
 // this function creates and pushes two rectangles to the array var
 function createRect() {
   arr.push(
-    new VRect(Math.random() * canvas.width, -100, 10, 100, randomColor(),speed)
+    new VRect(Math.random() * canvas.width, -100, 10, 100, randomColor(), speed)
   );
   arr.push(
-    new HRect(-100, Math.random() * canvas.height, 100, 10, randomColor(),speed)
+    new HRect(
+      -100,
+      Math.random() * canvas.height,
+      100,
+      10,
+      randomColor(),
+      speed
+    )
   );
 }
 
 //this checks where the mous current location is
 canvas.addEventListener("mousemove", (e) => {
-  // https://copyprogramming.com/howto/html5-canvas-and-mouse-events-issue 
+  // https://copyprogramming.com/howto/html5-canvas-and-mouse-events-issue
   // visit this website for clear understanding
-  var box = canvas.getBoundingClientRect(), 
-    scaleX = canvas.width / box.width, // 
-    scaleY = canvas.height / box.height;
+  var box = canvas.getBoundingClientRect();
+
+  (scaleX = canvas.width / box.width), //
+    (scaleY = canvas.height / box.height);
   mouseX = (e.clientX - box.left) * scaleX;
   mouseY = (e.clientY - box.top) * scaleY;
 });
-
 
 // this gernerates and return random color among red blue or green
 function randomColor() {

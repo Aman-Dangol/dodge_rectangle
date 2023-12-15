@@ -8,7 +8,7 @@ class Rect {
     this.speed = s;
   }
   draw() {
-    ctx.strokeStyle = "white";
+    ctx.strokeStyle = "black";
     ctx.fillStyle = this.color;
     ctx.fillRect(this.x, this.y, this.width, this.height);
     ctx.strokeRect(this.x, this.y, this.width, this.height);
