@@ -5,6 +5,8 @@ let ctx = canvas.getContext("2d");
 let over = document.querySelector(".gameOver");
 // used to generate q horizontal and vertical reactangle ech per second
 let time = 1000;
+// for timer on right hand corner
+let showTime = document.querySelector("#timer");
 // use to store all rectangles in the screen
 let arr = new Array();
 // for mouse coordinates
@@ -12,8 +14,10 @@ let mouseX, mouseY;
 // check if player has lost
 let gameOver = false;
 // id for interval
-let createID, timeDecreaseID;
+let createID, timeDecreaseID, timerID;
 let speed = 1;
+let seconds = 0;
+let showDuration=document.querySelector('.duration');
 
 function update() {
   // clearing the screen before  each update
@@ -23,8 +27,11 @@ function update() {
     // checking ig player has lost
     if (gameOver) {
       over.style.zIndex = 1;
+      showTime.style.display = "none"
+      showDuration.innerHTML = seconds +" seocnds";
       clearInterval(createID);
       clearInterval(timeDecreaseID);
+      clearInterval(timerID);
     } else {
       // if vertical rectangle or horizaonal rectagle goes over the canvas height or width respectively remove that rectangle from array hence that object wont be of any use
       if (arr[i].x >= canvas.width || arr[i].y >= canvas.height) {
@@ -40,7 +47,9 @@ function update() {
     // drawing all the images in the array
     arr[i].draw();
   }
-  window.requestAnimationFrame(update);
+  if (!gameOver) {
+    requestAnimationFrame(update);
+  }
 }
 // this calls cerate rect every 'time' value
 createID = setInterval(createRect, time);
@@ -94,6 +103,14 @@ function randomColor() {
   return "green";
 }
 
+timerID = setInterval(() => {
+  seconds++;
+  showTime.innerHTML = seconds;
+}, 1000);
+
 // calling  functions
+alert(
+  "move mouse so that it doesnt interestcts or touches any rectangular boxes.\nALl the best!!!"
+);
 createRect();
 update();
