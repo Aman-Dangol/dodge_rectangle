@@ -11,6 +11,10 @@
   height: 100vh;
 }
 
+body{
+  background-color: black;
+}
+
 .gameOver {
   display: block;
   width: 100%;
